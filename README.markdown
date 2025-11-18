@@ -7,11 +7,11 @@
 # Crop Pest Detection on AgroPest-12 (Faster R-CNN & YOLOv8-S)
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)
- [![PyTorch](https://img.shields.io/badge/PyTorch-2.1+-ee4c2c.svg)](https://pytorch.org/)
- [![Ultralytics YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-ffdd00.svg)](https://github.com/ultralytics/ultralytics)
- [![License](https://img.shields.io/badge/license-Academic-green.svg)](https://chatgpt.com/c/691c2399-b94c-8323-a627-2542068ff51c)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.1+-ee4c2c.svg)](https://pytorch.org/)
+[![Ultralytics YOLOv8](https://img.shields.io/badge/YOLOv8-ultralytics-ffdd00.svg)](https://github.com/ultralytics/ultralytics)
+[![License](https://img.shields.io/badge/license-Academic-green.svg)](https://chatgpt.com/c/691c2399-b94c-8323-a627-2542068ff51c)
 
-------
+---
 
 ## Project Overview
 
@@ -26,7 +26,7 @@ The overall workflow is:
 
 > Dataset preparation → Training → Evaluation → Metrics & plots → (Optional) Model comparison
 
-------
+---
 
 ## Models Implemented
 
@@ -37,26 +37,26 @@ The overall workflow is:
 
 Each model has its own scripts and output folders, but they share the same **AgroPest-12** dataset and class definitions.
 
-------
+---
 
 ## Dataset: AgroPest-12
 
 - **Classes (12):**
 
-  | ID   | Pest Name    |
-  | ---- | ------------ |
-  | 0    | Ants         |
-  | 1    | Bees         |
-  | 2    | Beetles      |
-  | 3    | Caterpillars |
-  | 4    | Earthworms   |
-  | 5    | Earwigs      |
-  | 6    | Grasshoppers |
-  | 7    | Moths        |
-  | 8    | Slugs        |
-  | 9    | Snails       |
-  | 10   | Wasps        |
-  | 11   | Weevils      |
+  | ID  | Pest Name    |
+  | --- | ------------ |
+  | 0   | Ants         |
+  | 1   | Bees         |
+  | 2   | Beetles      |
+  | 3   | Caterpillars |
+  | 4   | Earthworms   |
+  | 5   | Earwigs      |
+  | 6   | Grasshoppers |
+  | 7   | Moths        |
+  | 8   | Slugs        |
+  | 9   | Snails       |
+  | 10  | Wasps        |
+  | 11  | Weevils      |
 
 - **Format:** YOLO-style labels (`.txt`) with `class cx cy w h`
 
@@ -64,10 +64,10 @@ Each model has its own scripts and output folders, but they share the same **Agr
 
 - Dataset paths and names are configured via:
 
-  - `dataset/data.yaml` for **Faster R-CNN** 
-  - `pest.yaml` for **YOLOv8-S** 
+  - `dataset/data.yaml` for **Faster R-CNN**
+  - `pest.yaml` for **YOLOv8-S**
 
-------
+---
 
 ## Repository Structure (Example)
 
@@ -101,9 +101,7 @@ project_root/
     └── yolov8s_tuned_v2_test/
 ```
 
-> 你可以根据自己实际的文件夹名字稍微改一下上面的结构说明即可。
-
-------
+---
 
 ## Environment Setup
 
@@ -120,8 +118,6 @@ bash prepare.sh        # dataset + environment + basic deps
 bash train.sh          # create env, install deps, run training
 ```
 
-
-
 **YOLOv8-S:**
 
 ```bash
@@ -129,8 +125,6 @@ bash train.sh          # create env, install deps, run training
 # Typical manual install:
 pip install ultralytics opencv-python matplotlib numpy<2
 ```
-
-
 
 ### Option B — Single unified environment (example)
 
@@ -145,7 +139,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install ultralytics opencv-python tqdm matplotlib scikit-learn numpy<2
 ```
 
-------
+---
 
 ## 1. Faster R-CNN Pipeline (PyTorch)
 
@@ -166,7 +160,7 @@ python faster_r_cnn_marked.py \
 ```
 
 - Best model checkpoint saved to: `fast_r_cnn/runs_frcnn/best.pth`
-- Training logs: `train_output.log` 
+- Training logs: `train_output.log`
 
 ### Evaluation
 
@@ -199,9 +193,9 @@ This exports:
 - `metrics.json`
 - `overall_metrics.csv`, `per_class_metrics.csv`
 - `overall_mAP_summary.png`, `per_class_mAP_bar.png`
-- ROC / PR curve plots 
+- ROC / PR curve plots
 
-------
+---
 
 ## 2. YOLOv8-S Pipeline (Ultralytics)
 
@@ -229,8 +223,6 @@ runs_pest/yolov8s_tuned_v2/
 # includes: weights/best.pt, weights/last.pt, results.csv, logs...
 ```
 
-
-
 ### Validation & Testing
 
 ```bash
@@ -248,7 +240,7 @@ python dl_yolo.py --mode test \
 Predictions saved to:
 
 - `runs_pest/yolov8s_tuned_v2_val/`
-- `runs_pest/yolov8s_tuned_v2_test/` 
+- `runs_pest/yolov8s_tuned_v2_test/`
 
 ### Result Summarization
 
@@ -264,9 +256,9 @@ Generates:
 - `confusion_matrix.png`
 - Per-class visualizations
 
-All saved under `runs_pest/yolov8s_tuned_v2/`. 
+All saved under `runs_pest/yolov8s_tuned_v2/`.
 
-------
+---
 
 ## Evaluation Metrics (Both Pipelines)
 
@@ -281,7 +273,53 @@ Typical metrics reported:
 
 You can directly compare Faster R-CNN vs YOLOv8-S using their CSV and PNG outputs to discuss trade-offs between accuracy and speed in your report.
 
-------
+---
+
+## 1. Faster R-CNN Pipeline (PyTorch)
+
+### Training
+
+From `Ethan_solution`:
+
+```bash
+yolo detect train \
+ model=yolov8n.pt \
+ data=dataset/data.yaml \
+ imgsz=640 \
+ epochs=50 \
+ batch=16 \
+ name=pest_detector
+```
+
+- Best model checkpoint saved to:
+
+```bash
+runs/detect/pest_detector/weights/best.pt
+```
+
+### Environment Setup
+
+```bash
+conda create -n yolov8 python=3.10 -y
+conda activate yolov8
+pip install ultralytics torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+
+### Visualization Examples
+
+#### Successful Detection Example
+
+```bash
+runs/detect/predict/
+```
+
+---
+
+#### Failure Case Example
+
+```bash
+failure_cases
+```
 
 ## Citations
 
@@ -301,8 +339,6 @@ You can directly compare Faster R-CNN vs YOLOv8-S using their CSV and PNG output
 }
 ```
 
-
-
 **YOLOv8:**
 
 ```bibtex
@@ -314,11 +350,9 @@ You can directly compare Faster R-CNN vs YOLOv8-S using their CSV and PNG output
 }
 ```
 
-
-
-------
+---
 
 ## License
 
 This project is intended for **academic and research purposes only**.
- Use of the AgroPest-12 dataset must comply with the original Kaggle license.
+Use of the AgroPest-12 dataset must comply with the original Kaggle license.
