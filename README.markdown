@@ -275,11 +275,11 @@ You can directly compare Faster R-CNN vs YOLOv8-S using their CSV and PNG output
 
 ---
 
-## 1. Faster R-CNN Pipeline (PyTorch)
+## 3. Yolo-v8
 
 ### Training
 
-From `Ethan_solution`:
+From `yolo-Ethan.ipynb`:
 
 ```bash
 yolo detect train \
@@ -294,7 +294,7 @@ yolo detect train \
 - Best model checkpoint saved to:
 
 ```bash
-runs/detect/pest_detector/weights/best.pt
+models/yolo-Ethan/detect/pest_detector/weights/best.pt
 ```
 
 ### Environment Setup
