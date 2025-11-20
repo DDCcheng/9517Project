@@ -356,3 +356,5 @@ failure_cases
 
 This project is intended for **academic and research purposes only**.
 Use of the AgroPest-12 dataset must comply with the original Kaggle license.
+
+## GitHub Link:https://github.com/DDCcheng/9517Project
